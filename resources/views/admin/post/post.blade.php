@@ -27,14 +27,7 @@
                 <h3 class="box-title">Titles</h3>
               </div>
               <!-- /.box-header -->
-                  @if (count($errors) > 0)
-                      <div class="box-body">
-                    @foreach ($errors->all() as $error)
-                        <p class="alert alert-danger">{{ $error }}</p>
-
-                    @endforeach
-                    </div>
-                  @endif
+              @include('includes.messages')
               <!-- form start -->
               <form role="form" action="{{ route('post.store') }}" method="POST">
                 {{ csrf_field() }}
@@ -80,6 +73,8 @@
 
                 <div class="box-footer">
                   <button type="submit" class="btn btn-primary">Post</button>
+
+                  <a href="{{ route('post.index') }}" class="btn btn-warning">Cancel</a>
                 </div>
               </form>
             </div>

@@ -27,12 +27,14 @@
                 <h3 class="box-title">Titles</h3>
               </div>
               <!-- /.box-header -->
+              @include('includes.messages')
               <!-- form start -->
-              <form role="form">
+              <form role="form" action="{{ route('category.store') }}" method="post">
+                {{ csrf_field() }}
                 <div class="box-body">
                   <div class="form-group">
-                    <label for="title">Category Title</label>
-                    <input type="text" name="title" class="form-control" id="title" placeholder="Enter category post">
+                    <label for="name">Category Title</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter name category">
                   </div>
                   <div class="form-group">
                     <label for="slug">Category Slug</label>
@@ -42,7 +44,8 @@
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Post</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <a href="{{ route('category.index') }}" class="btn btn-warning">Cancel</a>
                 </div>
               </form>
             </div>

@@ -1,5 +1,6 @@
 @extends('admin.app')
 
+
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -27,12 +28,14 @@
                 <h3 class="box-title">Titles</h3>
               </div>
               <!-- /.box-header -->
+              @include('includes.messages')
               <!-- form start -->
-              <form role="form">
+              <form role="form" action="{{ route('tag.store') }}" method="post">
+                {{ csrf_field() }}
                 <div class="box-body">
                   <div class="form-group">
-                    <label for="title">Tag Title</label>
-                    <input type="text" name="title" class="form-control" id="title" placeholder="Enter title tag">
+                    <label for="name">Tag Title</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter name tag">
                   </div>
                   <div class="form-group">
                     <label for="slug">Tag Slug</label>
@@ -42,7 +45,8 @@
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Post</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <a href="{{ route('tag.index') }}" class="btn btn-warning">Cancel</a>
                 </div>
               </form>
             </div>
