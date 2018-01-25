@@ -1,5 +1,10 @@
 @extends('admin.app')
 
+@section('headSection')
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('admin/bower_components/select2/dist/css/select2.min.css') }}">
+@endsection
+
 @section('main-content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -45,6 +50,22 @@
                     <input type="text" name="slug" class="form-control" id="slug" placeholder="Enter slug post">
                   </div>
                   <div class="form-group">
+                    <label>Select Categories</label>
+                    <select class="form-control select2 select2-hidden-accessible" name="categories[]" multiple="" data-placeholder="Select a Category" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                      @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Select Tags</label>
+                    <select class="form-control select2 select2-hidden-accessible" name="tags[]" multiple="" data-placeholder="Select a Tag" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                      @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div class="form-group">
                     <label for="image">Upload Image</label>
                     <input type="file" id="image" name="image">
 
@@ -52,7 +73,7 @@
                   </div>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" name="status"> Publish
+                      <input type="checkbox" name="status" value="1"> Publish
                     </label>
                   </div>
                 </div>
@@ -66,7 +87,7 @@
                   </div>
                   <!-- /.box-header -->
                   <div class="box-body pad">
-                      <textarea name="body" class="textarea" placeholder="Place some text here"
+                      <textarea name="body" id="editor1" placeholder="Place some text here"
                                 style="width: 100%; height: 200px; outline: none; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                   </div>
                 </div>
@@ -87,4 +108,18 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+@endsection
+
+
+@section('footerSection')
+  <script src="{{ asset('admin/bower_components/select2/dist/js/select2.full.min.js') }}" charset="utf-8"></script>
+  <script type="text/javascript">
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2();
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1')
+  });
+  </script>
 @endsection
