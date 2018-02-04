@@ -35,7 +35,7 @@
 {{-- <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script> --}}
 <!-- CK Editor -->
 {{-- <script src="{{ asset('admin/bower_components/ckeditor/ckeditor.js') }}"></script> --}}
-<script src="//cdn.ckeditor.com/4.8.0/full/ckeditor.js"></script>
+<script src="{{ asset('admin/ckeditor/ckeditor.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
 
